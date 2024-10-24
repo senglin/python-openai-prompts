@@ -1,3 +1,12 @@
+# Steps
+Create a `.env` file
+```
+AZURE_OPENAI_API_KEY=<>
+AZURE_OPENAI_ENDPOINT=<>
+AZURE_OPENAI_DEPLOYMENT=<>
+AZURE_OPENAI_API_VERSION=<>
+```
+
 # Popular commands
 
 ```
@@ -24,3 +33,19 @@ git branch -M main
 git remote add origin git@github.com:senglin/python-openai-prompts.git
 git push -u origin main
 ```
+
+```
+git config --global user.name "YOUR_NAME"
+git config --global user.email "YOUR_EMAIL"
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+~/.ssh/config
+```
+Host github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+```
+git status
