@@ -5,19 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Test User Prompt",
+            "name": "Run Prompts",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/.codeenv/.run_llm.py",
-            "args": ["${file}", "${workspaceFolder}/system.md"],
-            "console": "internalConsole"
-        },
-        {
-            "name": "Test System Prompt",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/.codeenv/.run_llm.py",
-            "args": ["${workspaceFolder}/prompt.md", "${file}"],
+            "args": ["${fileDirname}/prompt.md", "${fileDirname}/system.md"],
             "console": "internalConsole"
         }
     ]

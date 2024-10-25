@@ -13,9 +13,23 @@ def read_file_content(filename):
 
 def main():
     api_key = os.getenv('AZURE_OPENAI_API_KEY')
-    
     if not api_key:
-        print("API key not found", file=sys.stderr)
+        print("AZURE_OPENAI_API_KEY not found", file=sys.stderr)
+        return
+
+    api_version = os.getenv('AZURE_OPENAI_API_VERSION')    
+    if not api_version:
+        print("AZURE_OPENAI_API_VERSION not found", file=sys.stderr)
+        return
+
+    endpoint = os.getenv('AZURE_OPENAI_ENDPOINT')   
+    if not endpoint:
+        print("AZURE_OPENAI_ENDPOINT not found", file=sys.stderr)
+        return
+
+    deployment = os.getenv('AZURE_OPENAI_DEPLOYMENT')       
+    if not deployment:
+        print("AZURE_OPENAI_DEPLOYMENT not found", file=sys.stderr)
         return
     
     if len(sys.argv) == 3:
@@ -26,11 +40,11 @@ def main():
         system_filepath = PROJECT_ROOT+'/system.md'
 
     if (not os.path.isfile(prompt_filepath)) or (not prompt_filepath.lower().endswith('.md')):
-        print("File not in markdown format:", prompt_filepath, file=sys.stderr)
+        print("File not found or not in markdown format:", prompt_filepath, file=sys.stderr)
         return
 
     if (not os.path.isfile(system_filepath)) or (not system_filepath.lower().endswith('.md')):
-        print("File not in markdown format:", system_filepath, file=sys.stderr)
+        print("File not found or not in markdown format:", system_filepath, file=sys.stderr)
         return
 
     prompt_content = read_file_content(prompt_filepath)
@@ -38,8 +52,8 @@ def main():
 
     client = AzureOpenAI(
         api_key=api_key,
-        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+        api_version=api_version,
+        azure_endpoint=endpoint
     )
     
     messages = []
@@ -62,7 +76,7 @@ def main():
     
     try:
         completion = client.chat.completions.create(
-            model=os.getenv("AZURE_OPENAI_DEPLOYMENT"),
+            model=deployment,
             messages=messages,
             temperature=0.7,
             top_p=0.95,
