@@ -74,8 +74,13 @@ System Prompt
 3. Only answer information that can be found in the provided knowledge base.
 ```
 Documents
-```
-```
+1. [PDF - Skin the Financial Services Onion](http://bian.org/wp-content/uploads/2018/05/Skin-the-Financial-Services-Onion-v24-final-BIAN.pdf)
+2. [PDF - Statement of Alignment with the BIAN Service Landscape](https://bian.org/wp-content/uploads/2023/08/BIAN-BCM-Relationship-with-BIAN-Service-Landscape-Final.pdf)
+3. [PDF - Build a foundation for coreless banking with Red Hat OpenShift](https://www.redhat.com/rhdc/managed-files/ve-build-digital-foundation-coreless-banking-overview-f30294pr-202110-en.pdf)
+4. [Web - Build a foundation for coreless banking with Red Hat OpenShift](https://www.redhat.com/en/resources/build-digital-foundation-coreless-banking-overview)
+5. [PDF - Fast-track and future-proof core banking transformation](https://bian.org/wp-content/uploads/2021/10/Virtusa-BIAN-for-Sibos-21.pdf)
+6. [PDF - BIAN Semantic API Practitioner Guide V8.1](https://bian.org/wp-content/uploads/2020/10/BIAN-Semantic-API-Pactitioner-Guide-V8.1-FINAL.pdf)
+
 Prompts
 ```
 how many service domains are defined
