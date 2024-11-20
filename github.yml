@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: GitHub Pull Request API
+  description: Retrieve the diff of a pull request and post comments back to it.
+  version: 1.0.0
+servers:
+  - url: https://api.github.com
+    description: GitHub API
+paths:
+  /repos/{owner}/{repo}/pulls/{pull_number}:
+    get:
+      operationId: getPullRequestDiff
+      summary: Get the diff of a pull request.
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Owner of the repository.
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name of the repository.
+        - name: pull_number
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The number of the pull request.
+        - name: Accept
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/vnd.github.v3.diff
+          description: Media type for the diff format.
+      responses:
+        "200":
+          description: Successfully retrieved the pull request diff.
+          content:
+            text/plain:
+              schema:
+                type: string
+        "404":
+          description: Pull request not found.
+  /repos/{owner}/{repo}/issues/{issue_number}/comments:
+    post:
+      operationId: postPullRequestComment
+      summary: Post a comment to the pull request.
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Owner of the repository.
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name of the repository.
+        - name: issue_number
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The issue or pull request number.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+                  description: The content of the comment.
+      responses:
+        "201":
+          description: Successfully created a comment.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  body:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      login:
+                        type: string
+                      id:
+                        type: integer
+        "404":
+          description: Pull request not found.
