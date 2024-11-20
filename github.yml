@@ -61,6 +61,25 @@ paths:
                 body:
                   type: string
                   description: The content of the comment.
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Owner of the repository.
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name of the repository.
+        - name: issue_number
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The issue or pull request number.
       responses:
         "201":
           description: Successfully created a comment.
